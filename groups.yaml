@@ -1,0 +1,10 @@
+all_devices:
+  name: Devices
+  entities:
+    - device_tracker.iphonedeneto
+    - device_tracker.iphonedekarla
+    
+all_lights:
+  name: Todas as luzes
+  entities:
+    - switch.sonoff_100015c09e

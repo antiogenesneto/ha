@@ -1,0 +1,10 @@
+sun.sun:
+  friendly_name: Sol
+sensor.yr_symbol:
+  friendly_name: Clima
+sensor.dark_sky_wind_speed:
+  friendly_name: Vento
+sensor.dark_sky_humidity:
+  friendly_name: Umidade
+sensor.dark_sky_temperature:
+  friendly_name: Temp

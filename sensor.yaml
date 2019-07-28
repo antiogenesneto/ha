@@ -1,0 +1,81 @@
+  - platform: mqtt
+    name: Bridge state
+    state_topic: "zigbee2mqtt/bridge/state"
+    icon: mdi:router-wireless
+
+#  - platform: mqtt
+#   name: "Quarto Temperatura"
+#    device_class: temperature
+#    state_topic: "zigbee2mqtt/0x00158d0001f57e97"
+#    value_template: "{{ value_json.temperature }}"
+#    unit_of_measurement: "°C"
+    
+  - platform: darksky
+    api_key: !secret api_darksky
+    language: 'pt'
+    units: ca
+    monitored_conditions:
+      - temperature
+      - wind_speed
+      - cloud_cover
+      - humidity
+      - pressure
+      - visibility
+      - hourly_summary
+      - daily_summary
+      - uv_index
+      
+  - platform: moon
+  
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      
+  - platform: systemmonitor
+    resources:
+      - type: disk_free
+        arg: /
+      - type: disk_use
+        arg: /
+      - type: disk_use_percent
+        arg: /
+      - type: memory_free
+      - type: memory_use
+      - type: memory_use_percent
+      - type: processor_use
+      - type: last_boot
+
+  - platform: openexchangerates
+    api_key: !secret api_openexchangerates
+    quote: BRL
+
+  - platform: history_stats
+    name: Tempo luz garagem ligada
+    entity_id: switch.sonoff_100015c09e
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: history_stats
+    name: Vezes que luz da garagem foi ligada
+    entity_id: switch.sonoff_100015c09e
+    state: 'on'
+    type: count
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+    
+  - platform: history_stats
+    name: Quantidade de tempo em casa
+    entity_id: device_tracker.iphonedeneto
+    state: 'home'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
+  - platform: date_countdown
+    name: Wedding Countdown
+    date: "20-05-2020 18:00"
+
+

@@ -1,0 +1,190 @@
+lovelace:
+  mode: yaml
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+frontend:
+  themes: !include themes.yaml
+
+homeassistant:
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 48
+  unit_system: metric
+  time_zone: America/Fortaleza
+  name: Home
+  customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /tmp
+    - /config
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: https://greenbit.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+# Sensors
+sensor: !include sensor.yaml
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+mqtt:
+    broker: localhost
+    port: 1883
+    client_id: hassio
+    keepalive: 60
+    username: !secret username_mqtt
+    password: !secret password_mqtt
+    protocol: 3.1.1
+    discovery: true
+    
+input_boolean:
+  zigbee_permit_join:
+    name: Allow devices to join
+    initial: off
+    icon: mdi:cellphone-wireless
+
+timer:
+  zigbee_permit_join:
+    name: Time remaining
+    duration: 600 # Updated this to the number of seconds you wish
+
+apple_tv:
+  - host: 192.168.99.140
+    login_id: "00000000-3e72-79d6-c40a-700751ea4b31"
+    name: Apple TV - Sala
+    start_off: true
+    credentials: !secret apple_tv
+
+homekit:
+
+ios:
+
+sonoff:
+  username: !secret username_sonoff
+  password: !secret password_sonoff
+  scan_interval: 60 
+  grace_period: 600
+  api_region: 'eu'
+  entity_prefix: True
+  debug: False
+  
+smartir:
+
+switch:
+  - platform: broadlink
+    host: 192.168.99.89
+    mac: '78:0F:77:B9:67:E7'
+    type: rm2_pro_plus
+    timeout: 15
+    switches:
+      ar_samsung:
+        friendly_name: "Ar condicionado"
+        command_on: 'JgBkAWAAASsPFA81DhUOFA8TDxQPEw8UDxQPMxAUDxUONRATDxMRNA81DjUONRA0DxQQFA8TDxQOFQ4UDxQOFQ4UDhUOFA8UDhUOFA4UDxQQFA4UDxQOFA8UDhYOFQ8TDxQOFQ4UDhUOFA8TEBQQEw81DzQPNQ42DT9gAAErETQPFA8UDhUOFBATDxMPFA4VDzQOFQ4VETMPFA41EDQPNA82DzUPNBATDhUOFg4UEBMOFQ4UDxQOFA8UDhQQFA4UDxMPFA8UDhQPFQ4UDxMPFA8UDhQQEw8TDxQPFA8UDhQPFA8TEBMOFQ8UDhQPFA1GYQABKxAzDxUOFA8TDxQOFw0VDhQPFA81DxQPEw8VDzQOFQ41DxMRNQ80DzUPNg41DzQPNQ81DxQNFRAUDzYPMhE1DxMPNRASDxQPFA80DzcONQ8UDzQPEw81DzUQEw8UDxQOFA8UDxMQEw4WDzUONQ42DjUNAA0FAAAAAA=='
+        command_off: 'JgBkAWAAASsQEw80DxQOFQ8TDxQOFA8UDhUONQ4VDhQPNQ41DxQONg42DjYONQ81DxQOFA8TDxUNFQ8TDxQOFQ4UERQOFQ0VDxMRFA8UDhQPFBAUDhUPEw8UEBUOFA8TDxUPFQ0VDxMPFA4VDhQPFA4UDxQONQ81DUVfAAEsDzYOFA8UDxQQFA4VEREPFBAVDjUPEw8UDjUPFA81DjYNNg42DzUPNg4VDhQPExEUDxQOFA8UEBQOFQ4UDxMRFA8UDhQPFBAUDxQPEw8UDhUOFA8UDhQPFA4VDhQQFA8TDxUOFBAUDxQOFQ8TERQOFA4+YAABLBA1DxQOFA8UEBQPFA8UDhQQFQ41DxMPFQ02DhQPNQ81DhQPNQ82DzUONQ42DjUONRE0DxQOFA8UDzQPNg41DxQOFQ4UDxQOFA81DzUONg4VDjUPEw81DzUPFA4VDhQQFBATDxQOFBEUDxMOFQ80DzUNAA0FAAAAAA=='
+      tv_lg:    
+        friendly_name: "TV LG ON/OFF"
+        command_on: 'JgBQAAABKJUSFBEUEjkRFBIUERQRFBIUETkSOREUEjgSORE5EjkRORIUERQSFBE5ERQSFBEUEhQRORI5ETkSFBE5ETkSORE5EgAFJwABKEwSAA0FAAAAAAAAAAA='
+        command_off: 'JgBQAAABKJYRFBIUETkSFBEUEhQRFBIUETkRORIUETkSORE5EjgSOREUEhQRFBI5ERQRFREUERQSORE5EjkRFBE5EjkRORI5EQAFKAABKEsSAA0FAAAAAAAAAAA='
+
+  - platform: broadlink
+    type: rm_mini
+    host: 192.168.99.88
+    mac: '78:0F:77:D6:80:19'
+    timeout: 15
+
+climate:
+  - platform: smartir
+    name: Ar Suíte
+    unique_id: ar_suite
+    device_code: 1400
+    controller_data: 192.168.99.89
+    temperature_sensor: sensor.0x00158d0001f57e97_temperature
+    humidity_sensor: sensor.0x00158d0001f57e97_humidity
+#    power_sensor: binary_sensor.ac_power
+
+wake_on_lan:
+
+media_player:
+  - platform: webostv
+    host: 192.168.99.134
+    name: TV LG - Sala
+    filename: webostv.conf
+    timeout: 5
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: EC:F4:51:18:8D:10
+      
+#  - platform: androidtv
+#    host: 192.168.99.180
+#    name: Mi Box - Suite
+#    apps:
+#      "amazon"
+
+
+camera:
+  - platform: mjpeg
+    name: Camera Garagem
+    mjpeg_url: http://192.168.99.10:5400/videostream.cgi?usr=admin&pwd=1q2w3e4r
+    username: !secret username_cam
+    password: !secret password_cam
+    
+stream:
+
+discovery:
+
+device_tracker:
+  - platform: xiaomi
+    host: 192.168.99.1
+    password: !secret password_xiaomi_router
+    new_device_defaults:
+      track_new_devices: false
+
+google:
+    client_id: !secret id_api_google
+    client_secret: !secret secret_api_google
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret api_telegram
+    allowed_chat_ids:
+      - 13575832
+ 
+notify:
+  - name: telegramneto
+    platform: telegram
+    chat_id: 13575832
+
+weather:
+  - platform: darksky
+    api_key: !secret api_darksky
+
+speedtestdotnet:
+  scan_interval:
+    minutes: 30 
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+#fastdotcom:
+#  scan_interval:
+#      minutes: 30
+
+shopping_list:
+
+    
+
+    
+    
+    
+    
+    

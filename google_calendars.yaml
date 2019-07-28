@@ -1,0 +1,21 @@
+
+- cal_id: antiogenesneto@gmail.com
+  entities:
+  - device_id: tavares_neto
+    ignore_availability: true
+    name: Tavares Neto
+    track: true
+
+- cal_id: addressbook#contacts@group.v.calendar.google.com
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: true
+
+- cal_id: pt.brazilian#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: holidays_in_brazil
+    ignore_availability: true
+    name: Holidays in Brazil
+    track: true

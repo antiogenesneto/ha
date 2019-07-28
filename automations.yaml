@@ -1,0 +1,233 @@
+  - id: enable_zigbee_join
+    alias: Enable Zigbee joining
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.zigbee_permit_join
+      to: 'on'
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'true'
+    - service: timer.start
+      data:
+        entity_id: timer.zigbee_permit_join
+  - id: disable_zigbee_join
+    alias: Disable Zigbee joining
+    trigger:
+    - entity_id: input_boolean.zigbee_permit_join
+      platform: state
+      to: 'off'
+    action:
+    - data:
+        payload: 'false'
+        topic: zigbee2mqtt/bridge/config/permit_join
+      service: mqtt.publish
+    - data:
+        entity_id: timer.zigbee_permit_join
+      service: timer.cancel
+    hide_entity: true
+  - id: disable_zigbee_join_timer
+    alias: Disable Zigbee joining by timer
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.zigbee_permit_join
+    action:
+    - service: mqtt.publish
+      data:
+        topic: zigbee2mqtt/bridge/config/permit_join
+        payload: 'false'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.zigbee_permit_join
+        
+  - id: temp_quarto
+    alias: 'Retornar a temperatura do quarto'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+         command: '/tempquarto'
+    action:
+    - service: notify.telegramneto
+      data:
+         title: "Temperatura quarto"
+         message: 'A temperatura do quarto está {{ states.sensor["0x00158d0001f57e97_temperature"].state }} °C'
+
+  - id: cotacao_dolar
+    alias: 'Retornar a cotação do dólar'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+         command: '/dolar'
+    action:
+    - service: notify.telegramneto
+      data:
+         title: "Cotação do dólar"
+         message: 'A cotação do dólar é de R${{ states.sensor["exchange_rate_sensor"].state }}'
+
+  - id: temp_quarto_alta
+    alias: 'Informar quarto quente'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.0x00158d0001f57e97_temperature
+      above: 29
+    action:
+    - service: notify.telegramneto
+      data:
+         title: "Temperatura quarto"
+         message: 'O quarto está quente, a temperatura agora é de {{ states.sensor["0x00158d0001f57e97_temperature"].state }} °C'
+         
+  - id: dolar_baixou
+    alias: 'Dólar baixou'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.exchange_rate_sensor
+      below: 3.70
+    action:
+    - service: notify.telegramneto
+      data:
+         title: "Dólar baixou"
+         message: 'O dólar baixou, a cotação agora é de R${{ states.sensor["exchange_rate_sensor"].state }}'
+         
+  - id: temp_quarto_alta_ligar_ar
+    alias: 'Ligar ar quando o quarto estiver quente'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.0x00158d0001f57e97_temperature
+      above: 30
+    action:
+    - service: climate.turn_on
+      data:
+        entity_id: climate.ar_quarto
+
+  - id: temp_quarto_baixa_desligar_ar
+    alias: 'Desligar ar quando o quarto estiver frio'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: numeric_state
+      entity_id: sensor.0x00158d0001f57e97_temperature
+      below: 26
+    action:
+    - service: climate.turn_off
+      data:
+        entity_id: climate.ar_quarto
+
+
+  - id: bixo_vei_chegou
+    alias: 'Bixo vei chegou'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: device_tracker.iphonedeneto
+      from: 'not_home'
+      to: 'home'
+    action:
+    - service: notify.telegramneto
+      data:
+         message: 'Bixo véi chegou!'
+
+  - id: alagamento_cozinha
+    alias: 'Alagamento cozinha'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.cozinha_alagamento_sensor_water_leak
+      from: 'off'
+      to: 'on'
+    action:
+    - service: notify.telegramneto
+      data:
+         message: 'Corre que deu merda, a cozinha e lavanderia estão alagando!'
+
+  - id: alagamento_cozinha_som
+    alias: 'Alagamento cozinha som'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.cozinha_alagamento_sensor_water_leak
+      from: 'off'
+      to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: 'device_tracker.iphonedeneto'
+          state: 'home'
+        - condition: state
+          entity_id: 'device_tracker.iphonedekarla'
+          state: 'home'
+    action:
+      - service: media_player.turn_on
+        data:
+          entity_id: media_player.tv_lg_sala_2
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.tv_lg_sala_2
+          source: "Radio Brasil by myTuner: Radio Online"
+
+  - id: alagamento_wc_social
+    alias: 'Alagamento banheiro social'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.0x00158d0002820794_water_leak
+      from: 'off'
+      to: 'on'
+    action:
+    - service: notify.telegramneto
+      data:
+         message: 'Corre que deu merda, o banheiro social está alagando!'
+
+  - id: alagamento_wc_suite
+    alias: 'Alagamento banheiro suite'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.0x00158d000283431c_water_leak
+      from: 'off'
+      to: 'on'
+    action:
+    - service: notify.telegramneto
+      data:
+         message: 'Corre que deu merda, o banheiro da suíte está alagando!'
+
+
+  - id: ventilador_ligado_sem_ninguem_em_casa
+    alias: 'Ventilador ligado sem ninguem em casa'
+    initial_state: true
+    hide_entity: true
+    trigger:
+    - platform: state
+      entity_id: group.all_devices
+      from: 'home'
+      to: 'not_home'
+    condition:
+      - condition: state
+        entity_id: switch.sonoff_100037c548
+        state: 'on'
+    action:
+    - service: notify.telegramneto
+      data:
+         message: 'O ventilador ficou ligado!'

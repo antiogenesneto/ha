@@ -1,0 +1,856 @@
+resources:
+  - url: /local/rr-calendario.js
+    type: module
+  - url: /local/button-card.js
+    type: module
+  - url: /local/weather-card.js
+    type: module
+  - url: /local/mini-graph-card-bundle.js?v=0.5.0
+    type: module
+
+    
+title: Home
+views:
+  - badges: []
+    cards:
+    
+      - type: vertical-stack
+        cards:
+          - type: picture-elements
+            image: /local/imgs/planta_arq.png
+            elements:
+            
+##cozinha e lavanderia:
+#sensor vazamento de agua:
+              - type: state-icon
+                entity: binary_sensor.cozinha_alagamento_sensor_water_leak
+                style:
+                  top: 69%
+                  left: 54%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": lightblue
+#Luzes sessão LED:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 66%
+                  left: 60%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+                  
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 66%
+                  left: 65%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 66%
+                  left: 70%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 66%
+                  left: 75%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+#Luzes sessão dicróica:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 55%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 59%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 63%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+                  
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 67%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold   
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 71%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 75%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 79%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold                    
+
+                  
+##banheiro social:
+#sensor vazamento de agua:
+              - type: state-icon
+                entity: binary_sensor.0x00158d0002820794_water_leak
+                style:
+                  top: 74%
+                  left: 46.5%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": dodgerblue
+##banheiro suite:
+#sensor vazamento de agua:
+              - type: state-icon
+                entity: binary_sensor.0x00158d000283431c_water_leak
+                style:
+                  top: 74%
+                  left: 32%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": dodgerblue              
+##Varanda:                  
+#Luzes sessão paflon:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 14%
+                  left: 64%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 14%
+                  left: 74%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 14%
+                  left: 84%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold                  
+#Luzes sessão dicróica:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 11%
+                  left: 57%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 17%
+                  left: 57%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+                  
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 19%
+                  left: 70.5%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold   
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 19%
+                  left: 74%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 11%
+                  left: 91%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 17%
+                  left: 91%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold     
+
+##Sala:
+#Luzes sessão dicróica entrada:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 78%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 71%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 64%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 57%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 50%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+                  
+#Luzes sessão dicróica movel:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 43%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 36%
+                  left: 92%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+                  
+#Luzes sessão dicróica quadro e movel:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 29%
+                  left: 90%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 26%
+                  left: 72%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold                   
+                  
+#Luzes sessão dicróica relogio:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 63%
+                  left: 78%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+#Luzes sessão dicróica TV:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 56%
+                  left: 58%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 56%
+                  left: 69%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+#Luzes sessão LED:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 32%
+                  left: 58%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 32%
+                  left: 60%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 32%
+                  left: 65%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 32%
+                  left: 70%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 45%
+                  left: 58%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 45%
+                  left: 60%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 45%
+                  left: 65%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:color-helper'
+                style:
+                  top: 45%
+                  left: 70%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+ 
+#Luzes sessão pendente:                  
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:ceiling-light'
+                style:
+                  top: 38%
+                  left: 82%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+
+##Hall dos quartos:
+#Luzes sessão paflon:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 51%
+                  left: 47%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+                  
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 51%
+                  left: 40%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold                  
+
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 41%
+                  left: 32%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+
+#Luzes sessão dicróica quadro:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-medium-outline'
+                style:
+                  top: 51%
+                  left: 32%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold 
+                  
+##Quarto de hospedes:
+#Luzes sessão paflon:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 22%
+                  left: 39.5%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+##Quarto:
+#Luzes sessão paflon:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 26%
+                  left: 15%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+##Suite:
+#Luzes sessão paflon:
+              - type: state-icon
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                style:
+                  top: 66%
+                  left: 15%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+#sonoff s20 ventilador:
+              - type: state-icon
+                entity: switch.sonoff_100037c548
+                icon: 'mdi:fan'
+                style:
+                  top: 69%
+                  left: 23.5%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+#smartir ar
+              - type: state-icon
+                entity: switch.ar_samsung
+                icon: 'mdi:air-conditioner'
+                style:
+                  top: 78%
+                  left: 23.5%
+                  "--paper-item-icon-color": darkgray
+                  "--paper-item-icon-active-color": gold
+########
+          - type: horizontal-stack  
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Temperatura Externa
+                hours_to_show: 48
+                entities:
+                  - sensor.dark_sky_temperature
+                color_thresholds:
+                  - value: 13
+                    color: '#03A9F4'
+                  - value: 16
+                    color: '#66BB6A'
+                  - value: 25
+                    color: '#E65100'
+              - type: 'custom:mini-graph-card'
+                name: Temperatura Suíte
+                hours_to_show: 48
+                entities:
+                  - sensor.0x00158d0001f57e97_temperature
+                color_thresholds:
+                  - value: 13
+                    color: '#03A9F4'
+                  - value: 16
+                    color: '#66BB6A'
+                  - value: 25
+                    color: '#E65100'
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:mini-graph-card'
+                name: Humidade Externa
+                hours_to_show: 48
+                entities:
+                  - sensor.dark_sky_humidity
+                color_thresholds:
+                  - value: 50
+                    color: '#FFAB00'
+                  - value: 70
+                    color: '#FFEB3B'
+                  - value: 80
+                    color: '#2196F3'
+              - type: 'custom:mini-graph-card'
+                name: Humidade Suíte
+                hours_to_show: 48
+                entities:
+                  - sensor.0x00158d0001f57e97_humidity
+                color_thresholds:
+                  - value: 50
+                    color: '#FFAB00'
+                  - value: 70
+                    color: '#FFEB3B'
+                  - value: 80
+                    color: '#2196F3'
+      - type: horizontal-stack 
+        cards:
+              - elements:
+                  - entity: device_tracker.iphonedeneto
+                    style:
+                      color: gold
+                      font-size: 1.4em
+                      left: 22%
+                      top: 90%
+                    type: state-label
+                  - entity: sensor.iphone_battery_level
+                    style:
+                      color: gold
+                      left: 86%
+                      top: 90%
+                    type: state-label
+                image: /local/imgs/neto_dollify.jpg
+                type: picture-elements
+                
+              - elements:
+                  - entity: device_tracker.iphonedekarla
+                    style:
+                      color: gold
+                      font-size: 1.4em
+                      left: 22%
+                      top: 90%
+                    type: state-label
+#                  - entity: sensor.iphone_battery_level
+#                    style:
+#                      color: gold
+#                      left: 86%
+#                      top: 90%
+#                    type: state-label
+                image: /local/imgs/karla_dollify.jpeg
+                type: picture-elements
+                    
+      - type: vertical-stack
+        cards:
+        
+          - entities:
+              - entity: media_player.tv_lg_sala_2
+                icon: 'mdi:television-classic'
+              - entity: media_player.sala_de_estar
+                icon: 'mdi:airplay'
+            show_header_toggle: false
+            title: Media players
+            type: entities
+         
+          - type: shopping-list
+            title: Lista de compras
+
+      - type: vertical-stack
+        cards:
+          - entities:
+              - entity: calendar.tavares_neto
+              - entity: calendar.holidays_in_brazil
+            type: 'custom:rr-calendario'
+            title: Agenda
+            showProgressBar: false
+            showCurrentEventLine: false
+            maxDaysToShow: 90
+            showMonth: true
+
+    icon: 'mdi:home-assistant'
+    path: default_view
+    title: Home
+ 
+
+  - badges: []
+    cards:
+
+      - camera_image: camera.camera_garagem
+        entities:
+          - camera.camera_garagem
+          - switch.sonoff_100015c09e
+        title: Garagem
+        type: picture-glance
+
+    icon: 'mdi:car'
+    path: ''
+    title: Garagem
+
+    
+  - badges: []
+    cards:
+
+      - entity: switch.sonoff_100015c09e
+        type: entity-button
+        icon: 'mdi:wall-sconce-flat'
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:button-card'
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:square-inc'
+                name: Garagem
+                show_state: true
+                styles:
+                  card:
+                    - height: 78px
+                  name:
+                    - font-weight: 500
+                    - font-size: 14px
+                  state:
+                    - font-size: 11px
+                state:
+                  - value: 'off'
+                    styles:
+                      card:
+                        - filter: opacity(85%)
+                      state:
+                        - color: '#616161'
+                  - value: unavailable
+                    styles:
+                      card:
+                        - filter: opacity(40%)
+                        - color: '#5D4037'
+                  - value: 'on'
+                    styles:
+                      state:
+                        - color: var(--secondary-text-color)
+
+              - type: 'custom:button-card'
+                entity: switch.sonoff_100015c09e
+                icon: 'mdi:lightbulb-on-outline'
+                name: Garagem
+                show_state: true
+                styles:
+                  card:
+                    - height: 78px
+                  name:
+                    - font-weight: 500
+                    - font-size: 14px
+                  state:
+                    - font-size: 11px
+                state:
+                  - value: 'off'
+                    styles:
+                      card:
+                        - filter: opacity(85%)
+                      state:
+                        - color: '#616161'
+                  - value: unavailable
+                    styles:
+                      card:
+                        - filter: opacity(40%)
+                        - color: '#5D4037'
+                  - value: 'on'
+                    styles:
+                      state:
+                        - color: var(--secondary-text-color)
+    
+    icon: 'mdi:lightbulb-on-outline'
+    path: ''
+    title: Iluminação
+    
+  - badges: []
+    cards:
+         - entity: climate.ar_suite
+           name: Ar Suíte
+           type: thermostat
+           
+         - cards:  
+           - entities:
+              - entity: sensor.0x00158d0001f57e97_temperature
+             hours_to_show: 24
+             title: Temperatura 24h
+             type: history-graph
+             
+           - entities:
+              - entity: sensor.0x00158d0001f57e97_humidity
+             hours_to_show: 24
+             title: Humidade 24h
+             type: history-graph
+             
+           type: horizontal-stack
+    type: vertical-stack
+
+    icon: 'mdi:snowflake'
+    path: ''
+    title: Climatizadores
+
+    
+  - badges: []
+    cards:
+#      - cards:
+          - cards:
+              - elements:
+                  - entity: device_tracker.iphonedeneto
+                    style:
+                      color: gold
+                      font-size: 1.4em
+                      left: 22%
+                      top: 90%
+                    type: state-label
+                  - entity: sensor.iphone_battery_level
+                    style:
+                      color: gold
+                      left: 86%
+                      top: 90%
+                    type: state-label
+                image: /local/imgs/neto_dollify.jpg
+                type: picture-elements
+                
+              - elements:
+                  - entity: device_tracker.iphonedekarla
+                    style:
+                      color: gold
+                      font-size: 1.4em
+                      left: 22%
+                      top: 90%
+                    type: state-label
+                  - entity: sensor.iphone_battery_level
+                    style:
+                      color: gold
+                      left: 86%
+                      top: 90%
+                    type: state-label
+                image: /local/imgs/karla_dollify.jpeg
+                type: picture-elements
+            
+            type: horizontal-stack
+    type: vertical-stack
+
+    icon: 'mdi:account-multiple'
+    path: ''
+    title: Familia
+
+  - badges: []
+    cards:
+
+      - entities:
+          - entity: sensor.tempo_luz_garagem_ligada
+          - entity: sensor.vezes_que_luz_da_garagem_foi_ligada
+          - entity: sensor.quantidade_de_tempo_em_casa
+        show_header_toggle: false
+        title: Luz Garagem
+        type: entities
+
+    icon: 'mdi:poll-box'
+    path: ''
+    title: Estatisticas
+
+  - badges: []
+    cards:
+
+      - entities:
+          - entity: calendar.tavares_neto
+            type: holiday
+          - entity: calendar.holidays_in_brazil
+            type: holiday
+        type: 'custom:rr-calendario'
+        title: Calendário
+        defaultMode: 2   
+
+      - entities:
+          - entity: sensor.dark_sky_wind_speed
+          - entity: sensor.dark_sky_temperature
+          - entity: sensor.dark_sky_humidity
+          - entity: sensor.dark_sky_hourly_summary
+        show_header_toggle: false
+        title: Clima e previsão do tempo | Natal-RN
+        type: entities
+
+      - entities:
+          - entity: sensor.exchange_rate_sensor
+        show_header_toggle: false
+        title: Cotação do dólar
+        type: entities      
+
+      - entities:
+          - entity: sensor.speedtest_download
+          - entity: sensor.speedtest_upload
+          - entity: sensor.speedtest_ping
+          
+        show_header_toggle: false
+        title: NET
+        type: entities 
+
+      - entities:
+          - entity: sensor.disk_use_percent
+          - entity: sensor.memory_use_percent
+          - entity: sensor.last_boot
+          - entity: sensor.date
+          - entity: sensor.time
+        show_header_toggle: false
+        title: Raspberry
+        type: entities
+    icon: 'mdi:information'
+    path: ''
+    title: Info
+
+

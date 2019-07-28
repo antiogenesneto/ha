@@ -1,0 +1,15 @@
+'0x00158d0001f57e97':
+    friendly_name": 'Sensor de Temperatura e Umidade Suíte'
+    retain: true
+
+'0x00158d000282078d':
+    friendly_name: 'Sensor Alagamento Cozinha e Lavanderia'
+    retain: true
+
+'0x00158d0002820794':
+    friendly_name: 'Sensor Alagamento Banheiro Social'
+    retain": true
+
+'0x00158d000283431c':
+    friendly_name: 'Sensor Alagamento Banheiro Suíte'
+    retain: true
